@@ -1,0 +1,19 @@
+name: tpuv4-64-train
+
+resources:
+   accelerators: tpu-v4-64
+   accelerator_args:
+      tpu_vm: True
+      runtime_version: tpu-vm-v4-base
+
+setup: |
+   git clone https://github.com/wimjan123/EasyLM.git
+   cd EasyLM
+   export PYTHONPATH="${PWD}:$PYTHONPATH"
+   sh ./scripts/tpu_vm_setup.sh
+
+run: |
+python -m EasyLM.models.gptj.gptj_train \
+--mp_mesh_dim 8 \
+--logger.online True \
+--logger.gcs_output_dir gs://gpt-j-train/GPT-Reddit-output-V2.2-v3
