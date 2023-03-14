@@ -6,6 +6,7 @@ resources:
       tpu_vm: True
       runtime_version: tpu-vm-v4-base
    region: us-central2-b 
+   
 setup: |
    git clone https://github.com/wimjan123/EasyLM.git
    cd EasyLM
